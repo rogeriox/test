@@ -5,3 +5,12 @@ services:
 script:
   - docker build -t rogeriox/node .
   - docker images rogeriox/node
+
+before_deploy:
+  - docker login -u rogeriox -p Juli@2009
+
+deploy:
+  provider: script
+  script: docker push rogeriox/node
+  on:
+    branch: master
